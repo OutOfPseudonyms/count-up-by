@@ -2,15 +2,20 @@ $(document).ready(function () {
   $("#countUpBy").submit(function (event) {
     event.preventDefault();
 
-    let countBy = $("#multiple").val();
-    let countTo = $("#total").val();
+    let countBy = parseInt($("#multiple").val());
+    let countTo = parseInt($("#total").val());
 
-    // let countBy = 5
-    // let countTo = 30
+    if (countBy < 0 || countTo < 0) {
+      alert("Please enter a non-negative number.");
+      return;
+    }
 
-    for (let index = 0; index <= countTo; index += countBy) {
-        console.log(index);
-    };
+    if (countBy > countTo) {
+      alert("Your multiple cannot be greater than total.")
+    }
+
+    for (let index = countBy; index <= countTo; index += countBy) {
+      $("#numbers").append(`<li>${index}</li>`)
+    }
   })
 })
-
